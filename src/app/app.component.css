@@ -1,0 +1,7 @@
+ body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color:  inherit;
+    color:  inherit;
+    transition: background-color 0.3s, color 0.3s;
+  }

@@ -1,0 +1,27 @@
+<div *ngFor="let post of posts" class="post">
+    <div class="post-header" >
+      <img *ngIf="getUserFromMap(post.userId)" (click)="goToProfile(post.userId)"
+     [src]="getUserFromMap(post.userId)?.userIconFileName || 'https://storage.googleapis.com/a1aa/image/HmCZ0sVJKMJJJ9cflYOI9VdOYYY6zH6SMRhlUKg8q6f7lR1TA.jpg'" alt="User profile" />
+      <div *ngIf="getUserFromMap(post.userId)">
+        <span class="name">{{ getUserFromMap(post.userId)?.nickname }}</span>
+      </div>
+    </div>
+  
+    <div class="post-text">
+      <h2>{{ post.description }}</h2>
+    </div>
+  
+    <img *ngIf="post.media" class="post-image" [src]="post.media" alt="Post image" />
+  
+    <div class="post-footer">
+      <div class="likes-comments">
+        <!-- <button class="mdc-icon-button">
+          <i class="material-icons">thumb_up</i>
+        </button>
+        <span>{{ post.likesCount }}</span> -->
+        <button class="mdc-icon-button comment-button">
+          <i class="material-icons">comment</i>
+        </button>
+      </div>
+    </div>
+  </div>

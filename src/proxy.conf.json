@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://socialnetworkapi20241120170215.azurewebsites.net",
+    "secure": false
+  }
+}

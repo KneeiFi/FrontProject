@@ -1,0 +1,13 @@
+<div class="userprofile">
+  <div class="userprofile-header">
+   
+    <img 
+      src="{{ userDTO?.userIconFileName || 'https://storage.googleapis.com/a1aa/image/HmCZ0sVJKMJJJ9cflYOI9VdOYYY6zH6SMRhlUKg8q6f7lR1TA.jpg' }}" 
+      alt="User Profile Picture" 
+    />
+    <div>
+      <div class="name">{{ userDTO?.nickname || userId + "anon" }}</div>
+      <div class="bio">{{ userDTO?.userDescription || "No description" }}</div>
+    </div>
+  </div>
+</div>

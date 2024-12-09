@@ -1,0 +1,44 @@
+<div class="post">
+    <div class="post-header">
+      <img
+        alt="User profile picture with a smiling face"
+        height="40"
+        [src]="userAvatar || 'https://storage.googleapis.com/a1aa/image/HmCZ0sVJKMJJJ9cflYOI9VdOYYY6zH6SMRhlUKg8q6f7lR1TA.jpg'"
+        width="40"
+      />
+      <div>
+        <div class="name">
+          {{ userNickname || 'Anonim' }}
+        </div>
+        <div class="time">
+          
+        </div>
+      </div>
+    </div>
+    <img
+      alt="A cityscape with tall buildings and a sunset"
+      class="post-image"
+      height="300"
+      [src]="post?.media"
+      width="600"
+    />
+    <div class="post-text">
+      {{ post?.description || '' }}
+    </div>
+    <div class="post-footer">
+      <div class="likes-comments">
+        <button class="mdc-icon-button material-icons">
+          favorite
+        </button>
+        <span>
+          {{ post?.likesCount || 0 }}
+        </span>
+        <button class="mdc-icon-button material-icons comment-button" style="margin-left: 20px;">
+          comment
+        </button>
+        <span>
+          0
+        </span>
+      </div>
+    </div>
+  </div>
