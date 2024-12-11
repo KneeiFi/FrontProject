@@ -64,8 +64,15 @@ export class AppComponent {
     this.router.navigate(['add-post']);
   }
 
+  goToSettings()
+  {
+    this.router.navigate(['settings']);
+  }
+
   getAvatar() : String | null | undefined
   {
     return this.userService.getCurrentUser()?.userIconFileName;
   }
+
+ 
 }

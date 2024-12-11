@@ -9,8 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit {
-  userId: number = 0; 
+export class UserProfileComponent implements OnInit { 
   userDTO: UserDTO | null = null; 
 
   constructor(private userService: UserService, private route: ActivatedRoute) {}
@@ -18,14 +17,13 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     
     this.route.params.subscribe(params => {
-      this.userId = params['id']; 
-      this.loadUserData(); 
+      let userId = params['id']; 
+      this.loadUserData(userId); 
     });
   }
 
-  
-  loadUserData(): void {
-    this.userService.getUserbyId(this.userId).subscribe({
+  loadUserData(userId: number): void {
+    this.userService.getUserbyId(userId).subscribe({
       next: (data) => {
         this.userDTO = data;  
       },

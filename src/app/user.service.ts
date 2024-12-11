@@ -29,8 +29,8 @@ export class UserService {
     return this.http.post<UserDTO>(`${this.apiUrl}/CreateUser`, createUserDto);
   }
 
-  putUser(id: number, user: UserDTO): Observable<UserDTO> {
-    return this.http.put<UserDTO>(`${this.apiUrl}/${id}`, user);
+  putUser(userId: number, user: CreateUserDTO): Observable<UserDTO> {
+    return this.http.put<UserDTO>(`${this.apiUrl}/${userId}`, user);
   }
 
   loginUser(loginDto: UserLoginDTO): Observable<UserDTO> {

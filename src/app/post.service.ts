@@ -20,8 +20,7 @@ export class PostService {
 
     return this.http.get<PostDTO[]>(this.apiUrl, { params });
   }
-  getPost(id: number): Observable<PostDTO>
-  {
+  getPost(id: number): Observable<PostDTO>{
     return this.http.get<PostDTO>(`${this.apiUrl}/${id}`);
   }
 

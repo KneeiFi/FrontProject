@@ -1,0 +1,9 @@
+<div *ngIf="comments.length > 0; else noComments">
+    <div *ngFor="let comment of comments">
+      <p><strong>{{ getUserNickname(comment.userId) }}:</strong> {{ comment.text }}</p>
+    </div>
+  </div>
+  <ng-template #noComments>
+    <p>No comments</p>
+  </ng-template>
+

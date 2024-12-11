@@ -19,9 +19,17 @@
           <i class="material-icons">thumb_up</i>
         </button>
         <span>{{ post.likesCount }}</span> -->
-        <button class="mdc-icon-button comment-button">
+        <button class="mdc-icon-button comment-button" (click)="goToComments(post.id)">
           <i class="material-icons">comment</i>
         </button>
       </div>
     </div>
+  </div>
+  <div class="nav-buttons">
+    <button class="mdc-icon-button" (click)="goToBack()">
+      <i class="material-icons">arrow_back</i>
+    </button>
+    <button class="mdc-icon-button" (click)="goToNext()">
+      <i class="material-icons">arrow_forward</i>
+    </button>
   </div>

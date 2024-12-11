@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.userService.setCurrentUser(response);
 
       
-          this.router.navigate(['/home']);
+          this.router.navigate(['']);
         },
         (error) => {
           console.error('Login failed:', error);

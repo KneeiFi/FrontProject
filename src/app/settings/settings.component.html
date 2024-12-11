@@ -1,0 +1,36 @@
+<div class="userprofile">
+  <div class="userprofile-header">
+    <div class="avatar-section">
+      <img [src]="avatarUrl || userService.getCurrentUser()?.userIconFileName" alt="User Avatar" class="profile-img" />
+      <div class="avatar-upload">
+        <label for="avatar">Change Avatar</label>
+        <input type="file" id="avatar" (change)="onAvatarChange($event)" accept="image/*" class="file-input" />
+      </div>
+    </div>
+
+    <div>
+      <div class="name">{{ userService.getCurrentUser()?.nickname }}</div>
+      <div class="bio">{{ userService.getCurrentUser()?.userDescription }}</div>
+    </div>
+  </div>
+
+  <div class="userprofile-content">
+    <h3>Settings</h3>
+
+    <div class="form-group">
+      <label for="description">Change Description</label>
+      <input type="text" id="description" [(ngModel)]="newDescription" placeholder="Enter new description" class="input-field" />
+      <button (click)="setDescription()" class="submit-btn">Update Description</button>
+    </div>
+
+    <div class="form-group">
+      <label for="nickname">Change Nickname</label>
+      <input type="text" id="nickname" [(ngModel)]="newNickname" placeholder="Enter new nickname" class="input-field" />
+      <button (click)="setNickname()" class="submit-btn">Update Nickname</button>
+    </div>
+  </div>
+
+  <div class="userprofile-footer">
+    <button (click)="logout()" class="submit-btn">Logout</button>
+  </div>
+</div>

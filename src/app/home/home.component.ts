@@ -28,6 +28,11 @@ export class HomeComponent implements OnInit {
       return;
     }
     
+    const storedSkip = localStorage.getItem('skip');
+    if (storedSkip) {
+      this.skip = parseInt(storedSkip, 10);
+    }
+
     this.getPosts();
   }
 
@@ -45,7 +50,6 @@ export class HomeComponent implements OnInit {
   }
 
   getUser(userId: number) {
-    
     if (this.users.has(userId)) {
       return; 
     }
@@ -54,19 +58,35 @@ export class HomeComponent implements OnInit {
       this.users.set(userId, user); 
     });
   }
-
   
   getUserFromMap(userId: number): UserDTO | undefined {
     return this.users.get(userId);
   }
 
-  goToProfile(idUser: number)
-  {
+  goToProfile(idUser: number) {
     this.router.navigate(['user-profile/' + idUser]);
   }
 
-  likeAdd(PostDTO: PostDTO)
-  {
-
+  goToComments(postId: number) {
+    this.router.navigate(['comments/' + postId ]);
   }
+
+  goToNext() {
+    if(this.posts.length == 10){
+      this.skip += 10;
+     
+      localStorage.setItem('skip', this.skip.toString());
+      this.getPosts();
+    }
+  }
+
+  goToBack() {
+    if(this.skip > 0) {
+      this.skip -= 10;
+    
+      localStorage.setItem('skip', this.skip.toString());
+      this.getPosts();
+    }
+  }
+
 }
