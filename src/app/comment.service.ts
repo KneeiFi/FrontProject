@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CommentDTO } from './models/comment.dto';
+import { CommentDTO, CreateCommentDTO } from './models/comment.dto';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, } from 'rxjs/operators';
@@ -19,4 +19,9 @@ export class CommentService {
       })
     );
   }
+
+  postComment(createCommentDTO: CreateCommentDTO): Observable<CreateCommentDTO>{
+    return this.http.post<CommentDTO>(this.apiUrl, createCommentDTO)
+  }
+
 }

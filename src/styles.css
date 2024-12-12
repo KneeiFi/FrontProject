@@ -478,7 +478,118 @@ body.light-theme .userprofile .last-visit span {
 }
 /*-----------------EndUserProfile------------------*/
  /* Login-specific styling */
+/* Login & Registration Forms Styling */
+.container, .login-container {
+  background-color: var(--post-background-color-dark);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  margin: 0 auto; 
+  transition: background-color 0.3s;
+}
 
+body.light-theme .container, 
+body.light-theme .login-container {
+  background-color: var(--post-background-color-light);
+}
+
+.container h2, .login-container h2 {
+  color: var(--text-color-dark);
+  margin-bottom: 30px;
+  transition: color 0.3s;
+}
+
+body.light-theme .container h2, 
+body.light-theme .login-container h2 {
+  color: var(--text-color-light);
+}
+
+.form-group, .input-group {
+  margin-bottom: 20px;
+  text-align: left;
+  position: relative;
+  width: 100%;
+}
+
+.form-group label, .input-group label {
+  color: var(--text-color-dark);
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+  transition: color 0.3s;
+}
+
+body.light-theme .form-group label, 
+body.light-theme .input-group label {
+  color: var(--text-color-light);
+}
+
+.form-group input, .input-group input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--sidebar-color-dark);
+  color: var(--text-color-dark);
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+body.light-theme .form-group input, 
+body.light-theme .input-group input {
+  background-color: var(--sidebar-color-light);
+  color: var(--text-color-light);
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  background-color: var(--icon-color-dark);
+  color: var(--text-color-light);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-theme .submit-btn {
+  background-color: var(--icon-color-light);
+  color: var(--text-color-dark);
+}
+
+.submit-btn:hover {
+  background-color: var(--icon-hover-bgcolor-dark);
+  color: var(--icon-hover-color-dark);
+}
+
+body.light-theme .submit-btn:hover {
+  background-color: var(--icon-hover-bgcolor-light);
+  color: var(--icon-hover-color-light);
+}
+
+/* Additional Styling for Materialize Textarea */
+.materialize-textarea {
+  background-color: var(--sidebar-color-dark);
+  color: var(--text-color-dark);
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+
+body.light-theme .materialize-textarea {
+  background-color: var(--sidebar-color-light);
+  color: var(--text-color-light);
+  border-color: #ccc;
+}
  /* Общий стиль для контейнера */
 .container, .login-container {
   background-color: #2e2239;
@@ -550,3 +661,97 @@ body.light-theme .userprofile .last-visit span {
   color: #d3c4e3;
   font-size: 16px;
 }
+
+/* comments */
+.comments-section {
+  background-color: var(--post-background-color-dark);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+body.light-theme .comments-section {
+  background-color: var(--post-background-color-light);
+}
+
+.comments-section h2, .comments-section h3 {
+  color: var(--text-color-dark);
+  transition: color 0.3s;
+}
+
+body.light-theme .comments-section h2,
+body.light-theme .comments-section h3 {
+  color: var(--text-color-light);
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-author img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-author span {
+  font-weight: bold;
+  color: var(--text-color-dark);
+  transition: color 0.3s;
+}
+
+body.light-theme .comment-author span {
+  color: var(--text-color-light);
+}
+
+.comment-text {
+  background-color: var(--sidebar-color-dark);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: var(--text-color-dark);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.light-theme .comment-text {
+  background-color: var(--sidebar-color-light);
+  color: var(--text-color-light);
+  border-color: #ccc;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form .input-field {
+  margin-bottom: 10px;
+}
+
+.materialize-textarea {
+  background-color: var(--sidebar-color-dark);
+  color: var(--text-color-dark);
+  resize: none;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.light-theme .materialize-textarea {
+  background-color: var(--sidebar-color-light);
+  color: var(--text-color-light);
+  border-color: #ccc;
+}
+

@@ -1,37 +1,45 @@
 import { ActivatedRoute } from '@angular/router';
 import { CommentService } from '../comment.service';
-import { CommentDTO } from '../models/comment.dto';
+import { CommentDTO, CreateCommentDTO  } from '../models/comment.dto';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../models/user.dto';
 import { UserService } from '../user.service';
 import { PostDTO } from '../models/post.dto';
 import { PostService } from '../post.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-comments',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css'
 })
 export class CommentsComponent implements OnInit {
   comments: CommentDTO[] = [];
-  users: Map<number, UserDTO> = new Map(); 
+  users: Map<number, UserDTO> = new Map();
   postDTO?: PostDTO;
-  constructor(private commentService: CommentService, private route: ActivatedRoute, 
-    private userService: UserService, private postService: PostService) {}
+  newComment: CreateCommentDTO = { text: '', userId: 1, postId: 1 };
+
+  constructor(
+    private commentService: CommentService,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private postService: PostService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      let postId = params['id'];
+    this.route.params.subscribe((params) => {
+      const postId = +params['id'];
+      this.newComment.postId = postId;
+      this.newComment.userId = this.userService.getCurrentUser()!.id;
       this.loadPost(postId);
       this.loadComments(postId);
-      
     });
-    
   }
-  async loadComments(postId: number | null | undefined) {
+
+  async loadComments(postId: number) {
     let currentId = 1;
     let finished = false;
 
@@ -40,11 +48,11 @@ export class CommentsComponent implements OnInit {
         const data = await this.commentService.getCommentById(currentId).toPromise();
 
         if (data) {
-          if(data.postId == this.postDTO?.id){
+          if (data.postId === this.postDTO?.id) {
             this.comments.push(data);
             this.loadUser(data.userId);
           }
-          currentId++; 
+          currentId++;
         } else {
           finished = true;
         }
@@ -53,6 +61,7 @@ export class CommentsComponent implements OnInit {
       }
     }
   }
+
   loadUser(userId: number): void {
     if (!this.users.has(userId)) {
       this.userService.getUserbyId(userId).subscribe({
@@ -61,21 +70,44 @@ export class CommentsComponent implements OnInit {
         },
         error: (err) => {
           console.error(`Failed to load user with ID ${userId}`, err);
-        }
+        },
       });
     }
   }
 
-  loadPost(postId: number)
-  {
-      this.postService.getPost(postId).subscribe({next: 
-        (data) => {this.postDTO = data},
-        error: (err) => {console.error(err)}
-      });
+  loadPost(postId: number): void {
+    this.postService.getPost(postId).subscribe({
+      next: (data) => {
+        this.postDTO = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
-  getUserNickname(userId: number): string | null{
-    const user = this.users.get(userId); 
-    return user ? user.nickname : 'Unknown'; 
+  getUserNickname(userId: number): string | null {
+    const user = this.users.get(userId);
+    return user ? user.nickname : 'Unknown';
+  }
+
+  getAvatar(userId: number) : string | null | undefined{
+    const user = this.users.get(userId);
+    return user?.userIconFileName;
+  }
+
+  addComment(): void {
+    if (this.newComment.text.trim()) {
+      this.commentService.postComment(this.newComment).subscribe({
+        next: (response) => {
+          console.log('Comment submitted successfully', response);
+          this.newComment.text = '';
+        },
+        error: (error) => {
+          console.error('Error submitting comment', error);
+          this.newComment.text = '';
+        }});
+      }
   }
 }
+

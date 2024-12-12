@@ -3,7 +3,7 @@
     <div class="avatar-section">
       <img [src]="avatarUrl || userService.getCurrentUser()?.userIconFileName" alt="User Avatar" class="profile-img" />
       <div class="avatar-upload">
-        <label for="avatar">Change Avatar</label>
+        <label for="avatar" class="custom-upload-label">Upload Avatar</label>
         <input type="file" id="avatar" (change)="onAvatarChange($event)" accept="image/*" class="file-input" />
       </div>
     </div>

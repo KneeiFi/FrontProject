@@ -1,9 +1,40 @@
-<div *ngIf="comments.length > 0; else noComments">
-    <div *ngFor="let comment of comments">
-      <p><strong>{{ getUserNickname(comment.userId) }}:</strong> {{ comment.text }}</p>
-    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коментарі</title>
+    <link rel="stylesheet" href="comments.component.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<div class="comments-section">
+  <h2>Коментарі</h2>
+  <div *ngFor="let comment of comments" class="comment">
+      <div class="comment-author">
+          <img src="{{ getAvatar(comment.userId) || 'https://storage.googleapis.com/a1aa/image/HmCZ0sVJKMJJJ9cflYOI9VdOYYY6zH6SMRhlUKg8q6f7lR1TA.jpg'}}" alt="Аватар автора" class="circle" />
+          <span>{{ getUserNickname(comment.userId) }}</span>
+      </div>
+      <div class="comment-text">
+          {{ comment.text }}
+      </div>
   </div>
-  <ng-template #noComments>
-    <p>No comments</p>
-  </ng-template>
+  <div class="comment-form">
+      <h3>Залишити коментар</h3>
+      <div class="input-field">
+          <textarea
+              id="comment"
+              class="materialize-textarea"
+              placeholder="Ваш коментар..."
+              [(ngModel)]="newComment.text"
+          ></textarea>
+        
+      </div>
+      <button class="btn waves-effect waves-light" (click)="addComment()">
+          Надіслати
+          <i class="material-icons right">send</i>
+      </button>
+  </div>
+</div>
+    
 

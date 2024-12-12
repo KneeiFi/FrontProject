@@ -1,28 +1,28 @@
 <div class="content">
   <div class="main-content">
     <div class="upload-box">
-     
+
       <input #fileInput id="file-input" style="display: none;" type="file" multiple (change)="onFileSelected($event)" />
-     
+
       <button (click)="triggerFileInput()">
         <i class="fas fa-upload"></i>
-        Завантажити зображення
+        Upload Images
       </button>
 
       <div class="images" id="image-preview">
         <div *ngFor="let img of images; let i = index" class="image-container">
-          <img [src]="img" alt="Завантажене зображення {{ i + 1 }}" height="80" width="80" />
+          <img [src]="img" alt="Uploaded Image {{ i + 1 }}" height="80" width="80" />
           <button class="remove-btn" (click)="removeImage(i)">&times;</button>
         </div>
       </div>
 
       <div class="description">
-        <label for="description">Опис</label>
+        <label for="description">Description</label>
         <input id="description" type="text" [(ngModel)]="description" />
         <i class="fas fa-times"></i>
       </div>
 
-      <button class="submit-btn" (click)="onSubmit()">Надіслати</button>
+      <button class="submit-btn" (click)="onSubmit()">Submit</button>
     </div>
   </div>
 </div>

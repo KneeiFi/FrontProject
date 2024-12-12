@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CreateUserDTO } from '../models/user.dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +17,7 @@ export class SettingsComponent {
   newDescription: string = '';
   newNickname: string = '';
 
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, private router: Router ) {}
 
   updateUserField(fieldName: keyof CreateUserDTO, value: string, password: string) {
     const currentUser = this.userService.getCurrentUser();
@@ -70,6 +71,7 @@ export class SettingsComponent {
         next: () => {
           console.log('Logged out successfully');
           this.userService.clearCurrentUser();
+          this.router.navigate(['']);
         },
         error: (err) => {
           console.error('Logout failed', err);
